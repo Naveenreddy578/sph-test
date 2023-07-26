@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains spf_test.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function jugaad_products_theme() {
+  return [
+    'node__products' => [
+      'render element' => 'elements',
+      'base hook' => 'node',
+    ],
+  ];
+}
+
+function jugaad_products_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  //check content type
+  if ($node->getType() == 'products') {
+    $variables['#attached']['library'][] = 'jugaad_products/products';
+  }
+}
